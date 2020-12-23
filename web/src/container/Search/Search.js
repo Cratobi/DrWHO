@@ -284,7 +284,57 @@ class Search extends Component {
 
     return (
       <Fragment>
-        <div class='grid grid-col-3-1'>
+        <section className='col'>
+          <label className='search'>
+            <div className='search__icon'>
+              <i className='material-icons'>search</i>
+            </div>
+            <input className='search__input' placeholder='Search for...' />
+          </label>
+          <div className='row justify-content-between mx-5'>
+            <p>Results</p>
+            <p>Sorted by</p>
+          </div>
+          <div className='container-fluid row flex-wrap justify-content-between m-0'>
+            {result.map(({ avatar, name, qualification, location, rating }) => (
+              <div className='card shadow-sm mr-auto m-0' style={{ minWidth: '26em', maxWidth: '30rem' }}>
+                <div className='card-body'>
+                  <div className='d-flex'>
+                    <figure class='figure'>
+                      <img
+                        src={avatar}
+                        className='figure-img img-fluid rounded'
+                        alt={name}
+                        style={{ minWidth: '10rem', width: '10rem' }}
+                      />
+                    </figure>
+                    <div className='container' style={{ width: '20rem' }}>
+                      <h3 class='card-title'>
+                        {name}
+                        <br />
+                        <small class='text-muted'>Specialized</small>
+                      </h3>
+                      <h5>Review: {rating}</h5>
+                    </div>
+                  </div>
+                  <div>
+                    <div className='mb-3'>
+                      <h6 className='mb-0 text-muted'>Location</h6>
+                      <small>{location}</small>
+                    </div>
+                    <div className='mb-3'>
+                      <h6 className='mb-0 text-muted'>Qualification</h6>
+                      <small>{qualification}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className='col-3'>Location</section>
+
+        {/* <div class='grid grid-col-3-1'>
           <section className='main'>
             <label className='search'>
               <div className='search__icon'>
@@ -326,6 +376,7 @@ class Search extends Component {
           </section>
           <section className='aside'>Location</section>
         </div>
+       */}
       </Fragment>
     )
   }

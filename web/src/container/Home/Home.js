@@ -27,8 +27,8 @@ class Home extends Component {
             <div>pro</div>
           </div>
         </section>
-        <div class='home grid grid-col-1-5'>
-          <section style={{ marginLeft: 'auto' }} className='aside'>
+        <div class='row m-0' style={{ height: 'calc(100vh - 5rem)' }}>
+          <section className='col-2'>
             <NavBar
               navigations={[
                 { link: '/search', name: 'Search', icon: 'person_search' },
@@ -41,7 +41,7 @@ class Home extends Component {
             <Route path='/temp' component={temp} key={0} />
           </Switch> */}
           </section>
-          <section className='scrollable'>
+          <section className='col row m-0 scrollable-y'>
             <Switch>
               <Route path='/search' component={Search} />
               <Route path='/appointments' component={Appointment} />
