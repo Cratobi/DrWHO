@@ -761,63 +761,71 @@ class Appointment extends Component {
 
     return (
       <Fragment>
-        <div class='grid grid-col-3-1'>
-          <section className='main'>
-            <label className='search'>
-              <div className='search__icon'>
-                <i className='material-icons'>search</i>
-              </div>
-              <input className='search__input' placeholder='Search for...' />
-            </label>
-            <div className='flex flex-pos-between p-hor-5'>
-              <p>Results</p>
-              <p>Sorted by</p>
-            </div>
-            <div className='container-card'>
-              {appointment.map(({ _id, speciality, name, location, date }) => (
-                <div key={_id} className='card result'>
-                  <div className='flex m-bottom-1'>
-                    <div className='container p-left-1'>
-                      <h3>{format(new Date(date), 'Do,MMM')}</h3>
-                    </div>
-                    <div className='container txtRight'>
-                      <h4>{format(new Date(date), 'Do,MMM')}</h4>
-                      <h4>{format(new Date(date), 'HH:mmA')}</h4>
+        {/* Main */}
+        <section className='col'>
+          <div className='d-flex justify-content-between mx-5 mt-4'>
+            <h6 className='text-muted'>Appointments: {appointment.length}</h6>
+          </div>
+
+          {/* Appointments */}
+          <div className='container-fluid row flex-wrap justify-content-center grid-card-last m-0'>
+            {appointment.map(({ _id, speciality, name, location, date }) => (
+              <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+                <div className='card-body row'>
+                  <div className='col'>
+                    {/* <figure class='figure' style={{ minWidth: '10rem', width: '10rem' }}>
+                    <img src={avatar} className='figure-img img-fluid rounded' alt={name} />
+                  </figure> */}
+                    <h4 class='card-title mb-4'>
+                      {name}
+                      <br />
+                      <small class='text-muted'>Specialized</small>
+                    </h4>
+                    <div className='mb-2'>
+                      <h6 className='mb-0 text-muted'>Location</h6>
+                      <small>{location}</small>
                     </div>
                   </div>
-                  <div className='container'>
-                    <h3>{speciality}</h3>
-                    <p>{name}</p>
+                  <div className='col d-flex flex-column align-items-end'>
+                    <div className='text-end'>
+                      <small className='mb-0 text-muted'>Date & Time</small>
+                      <h6>{format(new Date(date), 'Do MMM, YYYY (hh:mm A)')}</h6>
+                    </div>
+                    <button className='btn btn-secondary mt-auto'>Cancel</button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
-          <section className='aside'>
-            <div className='container p-vrt-4 hanging-bar scrollable'>
-              <div className='container'>
-                <h3>Status</h3>
-                <div className=''>
-                  {status.map(({ _id, speciality, name, date, status }) => (
-                    <div key={_id} className='card status'>
-                      <div className='container p-left-1'>
-                        <h3>{speciality}</h3>
-                        <h5>{name}</h5>
-                      </div>
-                      <div className='container'>
-                        <h5>Date: {format(new Date(date), 'Do MMM, YYYY')}</h5>
-                        <h5>Time: {format(new Date(date), 'HH:mm A')}</h5>
-                      </div>
-                      <div className='container'>
-                        <h3>{status}</h3>
-                      </div>
-                    </div>
-                  ))}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Right Bar */}
+        <section className='col-3 hanging'>
+          <div className='d-flex justify-content-between ms-3 mt-4'>
+            <h6 className='text-muted'>Status: {appointment.length}</h6>
+          </div>
+          {status.map(({ _id, speciality, name, location, status }) => (
+            <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+              <div className='card-body row'>
+                <div className='col'>
+                  {/* <figure class='figure' style={{ minWidth: '10rem', width: '10rem' }}>
+                    <img src={avatar} className='figure-img img-fluid rounded' alt={name} />
+                  </figure> */}
+                  <h5 class='card-title mb-4'>
+                    {speciality}
+                    <br />
+                    <small class='text-muted'>{name}</small>
+                  </h5>
+                  <div className='mb-2'>
+                    <h6 className='mb-0 text-muted'>Location</h6>
+                    <small>{location}</small>
+                  </div>
+                  <h6 className='text-danger'>{status}</h6>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+          ))}
+        </section>
       </Fragment>
     )
   }

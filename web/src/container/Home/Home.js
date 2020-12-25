@@ -19,21 +19,18 @@ class Home extends Component {
 
     return (
       <Fragment>
-        <section className='header'>
+        <section className='header d-flex justify-content-between align-items-center shadow-sm px-3'>
           <div className='logo'>Dr WHO</div>
-          <div className='btn-container'>
-            <div>logout</div>
-            <div>not</div>
-            <div>pro</div>
+          <div className='d-flex'>
+            <button className='btn btn-sm btn-outline-dark mt-auto'>Logout</button>
           </div>
         </section>
-        <div class='row m-0' style={{ height: 'calc(100vh - 5rem)' }}>
+        <div class='row m-0' style={{ height: 'calc(100vh - 2.6rem)' }}>
           <section className='col-2'>
             <NavBar
               navigations={[
                 { link: '/search', name: 'Search', icon: 'person_search' },
                 { link: '/appointments', name: 'Appointments', icon: 'today' },
-                { link: '/medical-profile', name: 'Medical Profile', icon: 'contact_page' },
                 { link: '/reviews', name: 'Reviews', icon: 'rate_review' },
               ]}
             />
@@ -45,6 +42,7 @@ class Home extends Component {
             <Switch>
               <Route path='/search' component={Search} />
               <Route path='/appointments' component={Appointment} />
+              <Route path='/reviews' component={Appointment} />
             </Switch>
           </section>
         </div>

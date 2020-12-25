@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.21.0",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^5.0.0-beta1",
     "fecha": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
     "material-icons": "^0.5.1",
