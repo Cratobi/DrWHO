@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import { tempAction } from '../../store/actions'
 import { format } from 'fecha'
 
-class Appointment extends Component {
+class Review extends Component {
   componentDidMount() {
     this.props.fetchTemp()
   }
@@ -764,10 +764,10 @@ class Appointment extends Component {
         {/* Main */}
         <section className='col'>
           <div className='d-flex justify-content-between mx-5 mt-4'>
-            <h6 className='text-muted'>Appointments: {appointment.length}</h6>
+            <h6 className='text-muted'>Appointment: {appointment.length}</h6>
           </div>
 
-          {/* Appointments */}
+          {/* Reviews */}
           <div className='container-fluid row flex-wrap justify-content-center grid-card-last m-0'>
             {appointment.map(({ _id, speciality, name, location, date }) => (
               <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
@@ -792,7 +792,7 @@ class Appointment extends Component {
                       <h6>{format(new Date(date), 'Do MMM, YYYY (hh:mm A)')}</h6>
                     </div>
                     <div className='mt-auto'>
-                      <button className='btn btn-danger'>Cancel</button>
+                      <button className='btn btn-primary'>Review</button>
                     </div>
                   </div>
                 </div>
@@ -804,29 +804,8 @@ class Appointment extends Component {
         {/* Right Bar */}
         <section className='col-3 hanging'>
           <div className='d-flex justify-content-between ms-3 mt-4'>
-            <h6 className='text-muted'>Status: {appointment.length}</h6>
+            <h6 className='text-muted' />
           </div>
-          {status.map(({ _id, speciality, name, location, status }) => (
-            <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
-              <div className='card-body row'>
-                <div className='col'>
-                  {/* <figure class='figure' style={{ minWidth: '10rem', width: '10rem' }}>
-                    <img src={avatar} className='figure-img img-fluid rounded' alt={name} />
-                  </figure> */}
-                  <h5 class='card-title mb-4'>
-                    {speciality}
-                    <br />
-                    <small class='text-muted'>{name}</small>
-                  </h5>
-                  <div className='mb-2'>
-                    <h6 className='mb-0 text-muted'>Location</h6>
-                    <small>{location}</small>
-                  </div>
-                  <h6 className='text-danger'>{status}</h6>
-                </div>
-              </div>
-            </div>
-          ))}
         </section>
       </Fragment>
     )
@@ -840,4 +819,4 @@ const mapDispatchToProps = dispatch => ({
   fetchTemp : payload => dispatch(tempAction.send.fetch(payload)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Appointment)
+export default connect(mapStateToProps, mapDispatchToProps)(Review)

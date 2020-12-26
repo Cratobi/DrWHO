@@ -3,10 +3,13 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import { tempAction } from '../../store/actions'
 
+import Login from '../Login/Login'
+import Registration from '../Registration/Registration'
+import PatientNav from '../Nav/PatientNav'
+
 import Search from '../Search/Search'
 import Appointment from '../Appointment/Appointment'
-
-import NavBar from '../../component/module/navBar/navBar'
+import Review from '../Review/Review'
 
 class Home extends Component {
   componentDidMount() {
@@ -27,22 +30,22 @@ class Home extends Component {
         </section>
         <div class='row m-0' style={{ height: 'calc(100vh - 2.6rem)' }}>
           <section className='col-2'>
-            <NavBar
-              navigations={[
-                { link: '/search', name: 'Search', icon: 'person_search' },
-                { link: '/appointments', name: 'Appointments', icon: 'today' },
-                { link: '/reviews', name: 'Reviews', icon: 'rate_review' },
-              ]}
-            />
+            <Switch>
+              <Route path='/patient/' component={PatientNav} />
+            </Switch>
             {/* <Switch>
             <Route path='/temp' component={temp} key={0} />
           </Switch> */}
           </section>
           <section className='col row m-0 scrollable-y'>
             <Switch>
-              <Route path='/search' component={Search} />
-              <Route path='/appointments' component={Appointment} />
-              <Route path='/reviews' component={Appointment} />
+              <Route path='/' exact component={Login} />
+              <Route path='/login' exact component={Login} />
+              <Route path='/registration' exact component={Registration} />
+              <Route path='/patient/' exact component={Search} />
+              <Route path='/patient/search' exact component={Search} />
+              <Route path='/patient/appointments' exact component={Appointment} />
+              <Route path='/patient/reviews' exact component={Review} />
             </Switch>
           </section>
         </div>

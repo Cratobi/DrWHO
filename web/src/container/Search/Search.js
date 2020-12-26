@@ -352,7 +352,10 @@ class Search extends Component {
                       <small className='mb-0 text-muted'>Visiting</small>
                       <h5>{visiting} Taka</h5>
                     </div>
-                    <button className='btn btn-primary mt-auto'>Ask for appointment</button>
+                    <div className='mt-auto'>
+                      <button className='btn btn-secondary ms-1'>See Review</button>
+                      <button className='btn btn-primary ms-1'>Ask for appointment</button>
+                    </div>
                   </div>
                 </div>
               </div>
