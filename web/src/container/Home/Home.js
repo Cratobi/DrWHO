@@ -28,7 +28,7 @@ class Home extends Component {
             <button className='btn btn-sm btn-outline-dark mt-auto'>Logout</button>
           </div>
         </section>
-        <div class='row m-0' style={{ height: 'calc(100vh - 2.6rem)' }}>
+        <div className='row m-0' style={{ height: 'calc(100vh - 2.6rem)' }}>
           <section className='col-2'>
             <Switch>
               <Route path='/patient/' component={PatientNav} />

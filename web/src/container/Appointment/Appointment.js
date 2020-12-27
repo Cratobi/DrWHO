@@ -773,13 +773,13 @@ class Appointment extends Component {
               <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                 <div className='card-body row'>
                   <div className='col'>
-                    {/* <figure class='figure' style={{ minWidth: '10rem', width: '10rem' }}>
+                    {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
                     <img src={avatar} className='figure-img img-fluid rounded' alt={name} />
                   </figure> */}
-                    <h4 class='card-title mb-4'>
+                    <h4 className='card-title mb-4'>
                       {name}
                       <br />
-                      <small class='text-muted'>Specialized</small>
+                      <small className='text-muted'>Specialized</small>
                     </h4>
                     <div className='mb-2'>
                       <h6 className='mb-0 text-muted'>Location</h6>
@@ -810,13 +810,13 @@ class Appointment extends Component {
             <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
               <div className='card-body row'>
                 <div className='col'>
-                  {/* <figure class='figure' style={{ minWidth: '10rem', width: '10rem' }}>
+                  {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
                     <img src={avatar} className='figure-img img-fluid rounded' alt={name} />
                   </figure> */}
-                  <h5 class='card-title mb-4'>
+                  <h5 className='card-title mb-4'>
                     {speciality}
                     <br />
-                    <small class='text-muted'>{name}</small>
+                    <small className='text-muted'>{name}</small>
                   </h5>
                   <div className='mb-2'>
                     <h6 className='mb-0 text-muted'>Location</h6>

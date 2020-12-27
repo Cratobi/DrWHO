@@ -21,85 +21,85 @@ class Registration extends Component {
           <div className='card my-5 shadow-sm' style={{ width: '30rem' }}>
             <div className='card-body p-4'>
               <div className='mb-4'>
-                <p class='display-4 text-center px-2'>Registration</p>
-                <div class='text-center px-2'>
+                <p className='display-4 text-center px-2'>Registration</p>
+                <div className='text-center px-2'>
                   Already have an account? Click to {' '}
                   <b>
                     <Link to='/login'>Login</Link>
                   </b>
                 </div>
               </div>
-              <form class='row g-3 needs-validation' novalidate>
-                <div class='form-floating'>
+              <form className='row g-3 needs-validation' novalidate>
+                <div className='form-floating'>
                   <input
                     type='text'
-                    class='form-control ps-3'
+                    className='form-control ps-3'
                     id='exampleFormControlInput1'
                     placeholder='name@example.com'
                     required
                   />
-                  <label for='visiting-fee' class='form-label text-muted ps-4'>
+                  <label for='visiting-fee' className='form-label text-muted ps-4'>
                     Full Name
                   </label>
-                  <div class='invalid-feedback'>Username is required</div>
+                  <div className='invalid-feedback'>Username is required</div>
                 </div>
-                <div class='form-floating'>
+                <div className='form-floating'>
                   <input
                     type='text'
-                    class='form-control ps-3'
+                    className='form-control ps-3'
                     id='exampleFormControlInput1'
                     placeholder='name@example.com'
                     required
                   />
-                  <label for='visiting-fee' class='form-label text-muted ps-4'>
+                  <label for='visiting-fee' className='form-label text-muted ps-4'>
                     Username
                   </label>
-                  <div class='invalid-feedback'>Username is required</div>
+                  <div className='invalid-feedback'>Username is required</div>
                 </div>
-                <div class='form-group ms-2'>
-                  <h6 class='text-muted'>Gender</h6>
-                  <div class='form-check'>
-                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault1' />
-                    <label class='form-check-label' for='flexRadioDefault1'>
+                <div className='form-group ms-2'>
+                  <h6 className='text-muted'>Gender</h6>
+                  <div className='form-check'>
+                    <input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault1' />
+                    <label className='form-check-label' for='flexRadioDefault1'>
                       Male
                     </label>
                   </div>
-                  <div class='form-check'>
-                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' />
-                    <label class='form-check-label' for='flexRadioDefault2'>
+                  <div className='form-check'>
+                    <input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' />
+                    <label className='form-check-label' for='flexRadioDefault2'>
                       Female
                     </label>
                   </div>
-                  <div class='form-check'>
-                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' />
-                    <label class='form-check-label' for='flexRadioDefault2'>
+                  <div className='form-check'>
+                    <input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' />
+                    <label className='form-check-label' for='flexRadioDefault2'>
                       Other
                     </label>
                   </div>
                 </div>
-                <div class='form-floating'>
+                <div className='form-floating'>
                   <input
                     type='password'
-                    class='form-control ps-3'
+                    className='form-control ps-3'
                     id='exampleFormControlInput1'
                     placeholder='name@example.com'
                     required
                   />
-                  <label for='visiting-fee' class='form-label text-muted ps-4'>
+                  <label for='visiting-fee' className='form-label text-muted ps-4'>
                     Password
                   </label>
-                  <div class='invalid-feedback'>Password is required</div>
+                  <div className='invalid-feedback'>Password is required</div>
                 </div>
-                <div class='col-12'>
-                  <div class='form-check'>
-                    <input class='form-check-input' type='checkbox' value='' id='invalidCheck' required />
-                    <label class='form-check-label' for='invalidCheck'>
+                <div className='col-12'>
+                  <div className='form-check'>
+                    <input className='form-check-input' type='checkbox' value='' id='invalidCheck' required />
+                    <label className='form-check-label' for='invalidCheck'>
                       Keep logged in
                     </label>
-                    <div class='invalid-feedback'>You must agree before submitting.</div>
+                    <div className='invalid-feedback'>You must agree before submitting.</div>
                   </div>
                 </div>
-                <div class='col-12 d-flex justify-content-between align-items-center'>
+                <div className='col-12 d-flex justify-content-between align-items-center'>
                   <div>
                     Need help?{' '}
                     <strong>
@@ -107,10 +107,10 @@ class Registration extends Component {
                     </strong>
                   </div>
                   <div>
-                    <Link to='/login' class='btn btn-secondary mx-1'>
+                    <Link to='/login' className='btn btn-secondary mx-1'>
                       Or, Sign in
                     </Link>
-                    <button class='btn btn-primary mx-1' type='submit'>
+                    <button className='btn btn-primary mx-1' type='submit'>
                       Sign up
                     </button>
                   </div>

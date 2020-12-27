@@ -26,6 +26,21 @@
   }
 }
 
+.modal {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.24);
+
+  .modal-dialog {
+    width: 100%;
+  }
+}
+.scrollable {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
 .nav {
   display: flex;
   flex-direction: row;

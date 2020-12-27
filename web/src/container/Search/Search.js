@@ -326,13 +326,13 @@ class Search extends Component {
               <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                 <div className='card-body row'>
                   <div className='col'>
-                    {/* <figure class='figure' style={{ minWidth: '10rem', width: '10rem' }}>
+                    {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
                       <img src={avatar} className='figure-img img-fluid rounded' alt={name} />
                     </figure> */}
-                    <h4 class='card-title mb-4'>
+                    <h4 className='card-title mb-4'>
                       {name}
                       <br />
-                      <small class='text-muted'>Specialized</small>
+                      <small className='text-muted'>Specialized</small>
                     </h4>
                     <div className='mb-2'>
                       <h6 className='mb-0 text-muted'>Location</h6>
@@ -366,54 +366,54 @@ class Search extends Component {
         {/* Right Bar */}
         <section className='col-3 hanging'>
           <div className='container py-4'>
-            <div class='card-title mb-4'>
-              <div class='mb-2'>
-                <label for='visiting-fee' class='form-label text-muted'>
+            <div className='card-title mb-4'>
+              <div className='mb-2'>
+                <label for='visiting-fee' className='form-label text-muted'>
                   Visiting Fee (0 - 2000taka)
                 </label>
-                <input type='range' class='form-range' min='0' max='2000' step='100' id='visiting-fee' />
+                <input type='range' className='form-range' min='0' max='2000' step='100' id='visiting-fee' />
               </div>
-              <div class='form-floating'>
-                <select class='form-select' id='location'>
+              <div className='form-floating'>
+                <select className='form-select' id='location'>
                   <option selected>Dhaka</option>
                   <option value='gulshan-1'>Gulshan 1</option>
                 </select>
-                <label for='visiting-fee' class='form-label text-muted'>
+                <label for='visiting-fee' className='form-label text-muted'>
                   Visiting Fee
                 </label>
               </div>
               <hr />
               <div>
-                <label for='exampleFormControlTextarea1' class='form-label text-muted'>
+                <label for='exampleFormControlTextarea1' className='form-label text-muted'>
                   Specialized
                 </label>
-                <div class='form-check'>
-                  <input class='form-check-input' type='radio' name='specialised' id='specialised-all' checked />
-                  <label class='form-check-label' for='specialised-all'>
+                <div className='form-check'>
+                  <input className='form-check-input' type='radio' name='specialised' id='specialised-all' checked />
+                  <label className='form-check-label' for='specialised-all'>
                     All
                   </label>
                 </div>
-                <div class='form-check'>
-                  <input class='form-check-input' type='radio' name='specialised' id='specialised-eye' />
-                  <label class='form-check-label' for='specialised-eye'>
+                <div className='form-check'>
+                  <input className='form-check-input' type='radio' name='specialised' id='specialised-eye' />
+                  <label className='form-check-label' for='specialised-eye'>
                     Eye
                   </label>
                 </div>
-                <div class='form-check'>
-                  <input class='form-check-input' type='radio' name='specialised' id='specialised-heart' />
-                  <label class='form-check-label' for='specialised-heart'>
+                <div className='form-check'>
+                  <input className='form-check-input' type='radio' name='specialised' id='specialised-heart' />
+                  <label className='form-check-label' for='specialised-heart'>
                     Heart
                   </label>
                 </div>
-                <div class='form-check'>
-                  <input class='form-check-input' type='radio' name='specialised' id='specialised-kidney' />
-                  <label class='form-check-label' for='specialised-kidney'>
+                <div className='form-check'>
+                  <input className='form-check-input' type='radio' name='specialised' id='specialised-kidney' />
+                  <label className='form-check-label' for='specialised-kidney'>
                     Kidney
                   </label>
                 </div>
-                <div class='form-check'>
-                  <input class='form-check-input' type='radio' name='specialised' id='specialised-dermatologist' />
-                  <label class='form-check-label' for='specialised-dermatologist'>
+                <div className='form-check'>
+                  <input className='form-check-input' type='radio' name='specialised' id='specialised-dermatologist' />
+                  <label className='form-check-label' for='specialised-dermatologist'>
                     Dermatologist
                   </label>
                 </div>
