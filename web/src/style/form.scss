@@ -1,4 +1,5 @@
 @import './theme';
+
 form {
   display: inline-flex;
   flex-direction: column;
@@ -84,38 +85,6 @@ form {
       }
     }
   }
-  label.lebel-checkbox {
-    display: inline-flex;
-    align-items: center;
-    margin: 0.6rem;
-
-    &:focus-within {
-      .txt {
-        color: $secondary-400;
-      }
-    }
-
-    input {
-      @include FontSize(2);
-      color: $greyscale-700;
-      font-weight: 500;
-      outline: none;
-
-      &::placeholder {
-        color: $greyscale-200;
-      }
-      &:checked + .txt {
-        color: $secondary-400;
-      }
-    }
-    .txt {
-      @include FontSize(2);
-      font-weight: 500;
-      color: $greyscale-700;
-      margin-left: 0.5rem;
-      padding-bottom: 0.2rem;
-    }
-  }
   label.lebel-radio {
     display: inline-flex;
     align-items: center;
@@ -147,6 +116,42 @@ form {
       color: $greyscale-700;
       margin-left: 0.5rem;
       padding-bottom: 0.2rem;
+    }
+  }
+  label.lebel-checkbox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0.5rem 0;
+
+    .checkbox {
+      outline: none;
+      opacity: 0;
+
+      & + .custombox {
+        content: '';
+        position: relative;
+        left: -0.5rem;
+
+        width: 1.5rem;
+        height: 1.5rem;
+
+        background-color: $greyscale-200;
+        border: 0.3rem solid $greyscale-300;
+        border-radius: 0.2rem;
+        transition: transform 200ms ease;
+      }
+      &:checked + .custombox {
+        content: '';
+        background-color: $primary-200;
+        border-color: $primary-500;
+        animation: scale;
+      }
+      &:focus + .custombox {
+        border-width: 0;
+      }
     }
   }
 }

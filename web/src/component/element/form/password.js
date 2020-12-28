@@ -14,9 +14,15 @@ const Password = ({ label, type: peek = true, icon, onChange, value = '' }) => {
   return (
     <Fragment>
       <label className='lebel-input'>
-        <div className='txt'>Name</div>
+        <div className='txt'>{label}</div>
         {icon && <i className='material-icons icon'>{icon}</i>}
-        <input type={type} className={`input ${optClass.join(' ')}`} placeholder='i.e. Whatever' />
+        <input
+          type={type}
+          className={`input ${optClass.join(' ')}`}
+          placeholder='i.e. Whatever'
+          onChange={({ target }) => onChange(target.value)}
+          value={value}
+        />
         {peek && (
           <i className='material-icons peek' onClick={() => togglePeek()}>
             {type == 'password' ? 'visibility' : 'visibility_off'}

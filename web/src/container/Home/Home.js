@@ -3,9 +3,15 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import { tempAction } from '../../store/actions'
 
-import Search from '../Search/Search'
+import Login from '../Login/Login'
+import Registration from '../Registration/Registration'
+import PatientNav from '../Nav/PatientNav'
+import DoctorNav from '../Nav/DoctorNav'
+import AdminNav from '../Nav/AdminNav'
 
-import NavBar from '../../component/module/navBar/navBar'
+import Search from '../Search/Search'
+import Appointment from '../Appointment/Appointment'
+import Review from '../Review/Review'
 
 class Home extends Component {
   componentDidMount() {
@@ -18,31 +24,33 @@ class Home extends Component {
 
     return (
       <Fragment>
-        <section className='header'>
+        <section className='header d-flex justify-content-between align-items-center shadow-sm px-3'>
           <div className='logo'>Dr WHO</div>
-          <div className='btn-container'>
-            <div>logout</div>
-            <div>not</div>
-            <div>pro</div>
+          <div className='d-flex'>
+            <button className='btn btn-sm btn-outline-dark mt-auto'>Logout</button>
           </div>
         </section>
-        <div class='grid grid-col-1-4'>
-          <section style={{ marginLeft: 'auto' }} className='aside'>
-            <NavBar
-              navigations={[
-                { link: '/search', name: 'Search', icon: 'person_search' },
-                { link: '/appointments', name: 'Appointments', icon: 'today' },
-                { link: '/medical-profile', name: 'Medical Profile', icon: 'contact_page' },
-                { link: '/reviews', name: 'Reviews', icon: 'rate_review' },
-              ]}
-            />
+        <div className='row m-0' style={{ height: 'calc(100vh - 2.6rem)' }}>
+          <section className='col-2'>
+            <Switch>
+              <Route path='/patient/' component={PatientNav} />
+              <Route path='/doctor/' component={DoctorNav} />
+              <Route path='/admin/' component={AdminNav} />
+            </Switch>
             {/* <Switch>
             <Route path='/temp' component={temp} key={0} />
           </Switch> */}
           </section>
-          <section>
+          <section className='col row m-0 scrollable-y'>
             <Switch>
-              <Route path='/search' component={Search} />
+              <Route path='/' exact component={Login} />
+              <Route path='/login' exact component={Login} />
+              <Route path='/registration' exact component={Registration} />
+              <Route path='/patient/' exact component={Search} />
+              <Route path='/patient/search' exact component={Search} />
+              <Route path='/patient/appointments' exact component={Appointment} />
+              <Route path='/patient/reviews' exact component={Review} />
+              <Route path='/doctor/appointments' exact component={Appointment} />
             </Switch>
           </section>
         </div>
