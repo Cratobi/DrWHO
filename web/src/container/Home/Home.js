@@ -6,6 +6,8 @@ import { tempAction } from '../../store/actions'
 import Login from '../Login/Login'
 import Registration from '../Registration/Registration'
 import PatientNav from '../Nav/PatientNav'
+import DoctorNav from '../Nav/DoctorNav'
+import AdminNav from '../Nav/AdminNav'
 
 import Search from '../Search/Search'
 import Appointment from '../Appointment/Appointment'
@@ -32,6 +34,8 @@ class Home extends Component {
           <section className='col-2'>
             <Switch>
               <Route path='/patient/' component={PatientNav} />
+              <Route path='/doctor/' component={DoctorNav} />
+              <Route path='/admin/' component={AdminNav} />
             </Switch>
             {/* <Switch>
             <Route path='/temp' component={temp} key={0} />
@@ -46,6 +50,7 @@ class Home extends Component {
               <Route path='/patient/search' exact component={Search} />
               <Route path='/patient/appointments' exact component={Appointment} />
               <Route path='/patient/reviews' exact component={Review} />
+              <Route path='/doctor/appointments' exact component={Appointment} />
             </Switch>
           </section>
         </div>
