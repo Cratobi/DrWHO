@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { tempAction } from '../../store/actions'
+import {} from '../../store/actions'
 
 class Login extends Component {
-  componentDidMount() {
-    this.props.fetchTemp()
-  }
+  componentDidMount() {}
   state = {}
 
   render() {
@@ -93,11 +91,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  temp : state.temp,
-})
-const mapDispatchToProps = dispatch => ({
-  fetchTemp : payload => dispatch(tempAction.send.fetch(payload)),
-})
+const mapStateToProps = state => ({})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects'
 
-import tempSaga from './tempSaga'
+import doctorSaga from './doctorSaga'
 
 export default function* rootSaga() {
-  yield all([ tempSaga() ])
+  yield all([ doctorSaga() ])
 }

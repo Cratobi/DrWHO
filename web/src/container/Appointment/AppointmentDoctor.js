@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
-import { tempAction } from '../../store/actions'
+import {} from '../../store/actions'
 import { format } from 'fecha'
 
 class Appointment extends Component {
-  componentDidMount() {
-    this.props.fetchTemp()
-  }
+  componentDidMount() {}
   state = {
     appointment : [
       {
@@ -833,11 +831,7 @@ class Appointment extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  temp : state.temp,
-})
-const mapDispatchToProps = dispatch => ({
-  fetchTemp : payload => dispatch(tempAction.send.fetch(payload)),
-})
+const mapStateToProps = state => ({})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Appointment)

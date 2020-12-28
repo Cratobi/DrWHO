@@ -1,4 +1,4 @@
 import doctorAction from './doctor'
-import tempAction from './temp'
+// import tempAction from './temp'
 
-export { doctorAction, tempAction }
+export { doctorAction }

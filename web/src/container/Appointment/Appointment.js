@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
-import { tempAction } from '../../store/actions'
+import {} from '../../store/actions'
 import { format } from 'fecha'
 
 class Appointment extends Component {
-  componentDidMount() {
-    this.props.fetchTemp()
-  }
+  componentDidMount() {}
+
   state = {
     appointment : [
       {
@@ -770,7 +769,7 @@ class Appointment extends Component {
           {/* Appointments */}
           <div className='container-fluid row flex-wrap justify-content-center grid-card-last m-0'>
             {appointment.map(({ _id, speciality, name, location, date }) => (
-              <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+              <div key={_id} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                 <div className='card-body row'>
                   <div className='col'>
                     {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
@@ -807,7 +806,7 @@ class Appointment extends Component {
             <h6 className='text-muted'>Status: {appointment.length}</h6>
           </div>
           {status.map(({ _id, speciality, name, location, status }) => (
-            <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+            <div key={_id} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
               <div className='card-body row'>
                 <div className='col'>
                   {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
@@ -833,11 +832,7 @@ class Appointment extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  temp : state.temp,
-})
-const mapDispatchToProps = dispatch => ({
-  fetchTemp : payload => dispatch(tempAction.send.fetch(payload)),
-})
+const mapStateToProps = state => ({})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Appointment)

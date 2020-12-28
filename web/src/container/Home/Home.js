@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
-import { tempAction } from '../../store/actions'
+import {} from '../../store/actions'
 
 import Login from '../Login/Login'
 import Registration from '../Registration/Registration'
@@ -14,9 +14,7 @@ import Appointment from '../Appointment/Appointment'
 import Review from '../Review/Review'
 
 class Home extends Component {
-  componentDidMount() {
-    this.props.fetchTemp()
-  }
+  componentDidMount() {}
   state = {}
 
   render() {
@@ -59,11 +57,9 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  temp : state.temp,
-})
+const mapStateToProps = state => ({})
 const mapDispatchToProps = dispatch => ({
-  fetchTemp : payload => dispatch(tempAction.send.fetch(payload)),
+  //
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
