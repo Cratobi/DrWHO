@@ -7,13 +7,11 @@ class Search extends Component {
   componentDidMount() {
     this.props.fetchTemp()
   }
-  state = {
-    result : [],
-  }
+  
+  state = {}
 
   render() {
-    const { result } = this.state
-    const { temp } = this.props
+    const { doctor_list } = this.props
     const { result } = this.state
 
     return (
@@ -21,12 +19,12 @@ class Search extends Component {
         {/* Main */}
         <section className='col'>
           <div className='d-flex justify-content-between mx-5 mt-4'>
-            <h6 className='text-muted'>Results: {result.length}</h6>
+            <h6 className='text-muted'>Results: {doctor_list.length}</h6>
           </div>
 
           {/* Search Result */}
           <div className='container-fluid row flex-wrap justify-content-center grid-card-last m-0'>
-            {result.map(({ avatar, name, qualification, location, rating, visiting }) => (
+            {doctor_list.map(({ avatar, name, qualification, location, rating, visiting }) => (
               <div className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                 <div className='card-body row'>
                   <div className='col'>
@@ -184,7 +182,7 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  temp : state.temp,
+  doctor_list : state.doctor.doctor_list,
 })
 const mapDispatchToProps = dispatch => ({
   fetchTemp : payload => dispatch(tempAction.send.fetch(payload)),
