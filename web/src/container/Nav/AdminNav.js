@@ -7,8 +7,8 @@ function AdminNav() {
     <Fragment>
       <NavBar
         navigations={[
-          { link: '/admin/reviews', name: 'Manage User', icon: 'supervised_user_circle' },
-          { link: '/admin/appointments', name: 'Signup Doctor', icon: 'assignment_ind' },
+          { link: '/admin/manage_user', name: 'Manage User', icon: 'supervised_user_circle' },
+          { link: '/admin/register_doctor', name: 'Signup Doctor', icon: 'assignment_ind' },
         ]}
       />
     </Fragment>

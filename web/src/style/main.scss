@@ -27,13 +27,20 @@
 }
 
 .modal {
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.24);
+  display: block;
+
+  .backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+  }
 
   .modal-dialog {
-    width: 100%;
+    // width: 100%;
   }
 }
 .scrollable {

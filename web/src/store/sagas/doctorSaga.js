@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import Api from './api/api'
 
 import { DOCTOR } from '../constants'
@@ -8,6 +8,8 @@ const { replace, addTop, addBottom, modify, remove } = doctorAction.save
 const { request, success, failed } = doctorAction.status
 
 const url = 'doctor'
+
+/* --------------------------------- SAGA middleware --------------------------------- */
 
 // CODE: FETCH
 
@@ -174,11 +176,11 @@ function* handleRemove({ payload = {} }) {
   }
 }
 
-function* watchDoctor() {
-  yield takeLatest(DOCTOR.SEND.FETCH, handleFetch)
-  // yield takeLatest(DOCTOR.SEND.CREATE, handleCreate)
-  // yield takeLatest(DOCTOR.SEND.MODIFY, handleModify)
-  // yield takeLatest(DOCTOR.SEND.REMVOE, handleRemove)
+function* watch() {
+  yield takeEvery(DOCTOR.SEND.FETCH, handleFetch)
+  // yield takeEvery(DOCTOR.SEND.CREATE, handleCreate)
+  // yield takeEvery(DOCTOR.SEND.MODIFY, handleModify)
+  // yield takeEvery(DOCTOR.SEND.REMVOE, handleRemove)
 }
 
-export default watchDoctor
+export default watch

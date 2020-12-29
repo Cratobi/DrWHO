@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Link, Switch, Route } from 'react-router-dom'
 import {} from '../../store/actions'
 
 import Login from '../Login/Login'
@@ -22,12 +22,37 @@ class Home extends Component {
 
     return (
       <Fragment>
-        <section className='header d-flex justify-content-between align-items-center shadow-sm px-3'>
-          <div className='logo'>Dr WHO</div>
-          <div className='d-flex'>
-            <button className='btn btn-sm btn-outline-dark mt-auto'>Logout</button>
-          </div>
-        </section>
+        <Route path='/:subpath(patient|doctor|admin)'>
+          <section className='header d-flex justify-content-between align-items-center shadow-sm px-3'>
+            <div className='logo'>Dr WHO</div>
+            <div className='d-flex'>
+              <Link to='/login'>
+                <button className='btn btn-sm btn-outline-dark mt-auto'>Logout</button>
+              </Link>
+            </div>
+          </section>
+        </Route>
+        <Route path='/:subpath(registration)'>
+          <section className='header d-flex justify-content-between align-items-center shadow-sm px-3'>
+            <div className='logo'>Dr WHO</div>
+            <div className='d-flex'>
+              <Link to='/login'>
+                <button className='btn btn-sm btn-outline-dark mt-auto'>Login</button>
+              </Link>
+            </div>
+          </section>
+        </Route>
+        <Route path='/:subpath(login|)'>
+          <section className='header d-flex justify-content-between align-items-center shadow-sm px-3'>
+            <div className='logo'>Dr WHO</div>
+            <div className='d-flex'>
+              <Link to='/registration'>
+                <button className='btn btn-sm btn-outline-dark mt-auto'>Registration</button>
+              </Link>
+            </div>
+          </section>
+        </Route>
+
         <div className='row m-0' style={{ height: 'calc(100vh - 2.6rem)' }}>
           <section className='col-2'>
             <Switch>

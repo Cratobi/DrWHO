@@ -19,7 +19,7 @@ class Registration extends Component {
           <div className='card my-5 shadow-sm' style={{ width: '30rem' }}>
             <div className='card-body p-4'>
               <div className='mb-4'>
-                <p className='display-4 text-center px-2'>Registration</p>
+                <p className='display-6 text-center px-2'>Registration</p>
                 <div className='text-center px-2'>
                   Already have an account? Click to {' '}
                   <b>
@@ -54,6 +54,19 @@ class Registration extends Component {
                   </label>
                   <div className='invalid-feedback'>Username is required</div>
                 </div>
+                <div className='form-floating'>
+                  <input
+                    type='password'
+                    className='form-control ps-3'
+                    id='exampleFormControlInput1'
+                    placeholder='name@example.com'
+                    required
+                  />
+                  <label for='visiting-fee' className='form-label text-muted ps-4'>
+                    Password
+                  </label>
+                  <div className='invalid-feedback'>Password is required</div>
+                </div>
                 <div className='form-group ms-2'>
                   <h6 className='text-muted'>Gender</h6>
                   <div className='form-check'>
@@ -76,17 +89,20 @@ class Registration extends Component {
                   </div>
                 </div>
                 <div className='form-floating'>
-                  <input
-                    type='password'
-                    className='form-control ps-3'
-                    id='exampleFormControlInput1'
-                    placeholder='name@example.com'
-                    required
-                  />
-                  <label for='visiting-fee' className='form-label text-muted ps-4'>
-                    Password
+                  <select className='form-select ps-3' id='floatingSelect'>
+                    <option selected>Don't know</option>
+                    <option value='A+'> A + (A Positive) </option>
+                    <option value='A-'> A - (A Negative) </option>
+                    <option value='B+'> B + (B Positive) </option>
+                    <option value='B-'> B - (B Negative) </option>
+                    <option value='AB+'> AB + (AB Positive) </option>
+                    <option value='AB-'> AB - (AB Negative) </option>
+                    <option value='O+'> O + (O Positive) </option>
+                    <option value='O-'> O - (O Negative) </option>
+                  </select>
+                  <label for='floatingSelect' className='ps-4'>
+                    Blood Grooup
                   </label>
-                  <div className='invalid-feedback'>Password is required</div>
                 </div>
                 <div className='col-12'>
                   <div className='form-check'>
