@@ -1,10 +1,10 @@
 import cloneDeep from 'lodash.clonedeep'
 
-import { APPOINTMENT } from '../constants'
+import { REVIEW } from '../constants'
 
 const initialState = {
-  appointment_list : [],
-  status           : {
+  review_list : [],
+  status      : {
     success : false,
     request : false,
     failed  : false,
@@ -12,46 +12,36 @@ const initialState = {
   },
 }
 
-const appointment = (state = initialState, { type, payload }) => {
+const review = (state = initialState, { type, payload }) => {
   switch (type) {
-    case APPOINTMENT.SAVE.REPLACE: {
+    case REVIEW.SAVE.REPLACE: {
       const newState = { ...state }
       newState[payload.key] = payload.data
       return newState
     }
-    case APPOINTMENT.SAVE.ADDTOP: {
-      console.log(payload.data)
+    case REVIEW.SAVE.ADDTOP: {
       const newState = { ...state }
       newState[payload.key] = [ payload.data, ...newState[payload.key] ]
 
       return newState
     }
-    case APPOINTMENT.SAVE.ADDBOTTOM: {
+    case REVIEW.SAVE.ADDBOTTOM: {
       const newState = cloneDeep(state)
       newState[payload.key] = [ ...newState[payload.key], payload.data ]
 
       return newState
     }
-    case APPOINTMENT.SAVE.MODIFY: {
+    case REVIEW.SAVE.MODIFY: {
       const newState = cloneDeep(state)
 
       let toModify
-      newState[payload.key].find((e, index) => e._id === payload.id && (toModify = index))
+      newState[payload.key].find((e, index) => e.id === payload.id && (toModify = index))
 
-      console.log(toModify)
       newState[payload.key][toModify] = payload.data
 
       return newState
     }
-    case APPOINTMENT.SAVE.REMOVE: {
-      const newState = cloneDeep(state)
-
-      let toModify
-      newState[payload.key] = newState[payload.key].filter(item => item._id !== payload.id)
-
-      return newState
-    }
-    case APPOINTMENT.SAVE.ACTIVATE: {
+    case REVIEW.SAVE.ACTIVATE: {
       const newState = cloneDeep(state)
 
       let toModify = newState[payload.key].filter(e => e.id === payload.data.id)[0]
@@ -59,7 +49,7 @@ const appointment = (state = initialState, { type, payload }) => {
 
       return newState
     }
-    case APPOINTMENT.SAVE.DEACTIVATE: {
+    case REVIEW.SAVE.DEACTIVATE: {
       const newState = cloneDeep(state)
 
       let toModify = newState[payload.key].filter(e => e.id === payload.data.id)[0]
@@ -67,7 +57,7 @@ const appointment = (state = initialState, { type, payload }) => {
 
       return newState
     }
-    case APPOINTMENT.STATUS.SUCCESS: {
+    case REVIEW.STATUS.SUCCESS: {
       const newState = cloneDeep(state)
 
       newState.status.request = false
@@ -75,7 +65,7 @@ const appointment = (state = initialState, { type, payload }) => {
 
       return newState
     }
-    case APPOINTMENT.STATUS.REQUEST: {
+    case REVIEW.STATUS.REQUEST: {
       const newState = cloneDeep(state)
 
       newState.status.success = false
@@ -84,7 +74,7 @@ const appointment = (state = initialState, { type, payload }) => {
 
       return newState
     }
-    case APPOINTMENT.STATUS.FAILED: {
+    case REVIEW.STATUS.FAILED: {
       const newState = cloneDeep(state)
 
       newState.status.request = false
@@ -98,4 +88,4 @@ const appointment = (state = initialState, { type, payload }) => {
   }
 }
 
-export default appointment
+export default review

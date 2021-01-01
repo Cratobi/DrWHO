@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
-import { doctorAction, appointmentAction } from '../../store/actions'
+import { appointmentAction, doctorAction, reviewAction } from '../../store/actions'
 
 class Search extends Component {
   componentDidMount() {
@@ -9,7 +9,7 @@ class Search extends Component {
   }
 
   state = {
-    selected_id       : '',
+    license_number    : '',
     appointment_modal : false,
     review_modal      : false,
     search            : '',
@@ -24,12 +24,11 @@ class Search extends Component {
     specialised       : 'specialised_all',
   }
 
-  onChange = (key, value) => {
+  onChange = (key, value, func = () => null) => {
     let newState = { ...this.state }
     newState[key] = value
 
-    this.setState(newState)
-    this.onFilterChange()
+    this.setState(newState, () => func())
   }
   onFilterChange = () => {
     this.props.fetchDoctor({
@@ -54,10 +53,10 @@ class Search extends Component {
   }
 
   render() {
-    const { onChange, onNewAppointment } = this
-    const { doctor_list, appointment_sent_list } = this.props
+    const { onChange, onNewAppointment, onFilterChange } = this
+    const { doctor_list, review_list, fetchReview } = this.props
     const {
-      selected_id,
+      license_number,
       appointment_modal,
       review_modal,
       search,
@@ -82,8 +81,8 @@ class Search extends Component {
 
           {/* Search Result */}
           <div className='container-fluid row flex-wrap justify-content-center grid-card-last m-0'>
-            {doctor_list.map(({ _id, name, qualification, location, rating, visiting }) => (
-              <div key={_id} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+            {doctor_list.map(({ license_number, name, graduated_college, location, rating, visiting_fee }) => (
+              <div key={license_number} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                 <div className='card-body row'>
                   <div className='col'>
                     {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
@@ -92,7 +91,7 @@ class Search extends Component {
                     <h4 className='card-title mb-4'>
                       {name}
                       <br />
-                      <small className='text-muted'>Specialized</small>
+                      <small className='text-muted'>{specialised}</small>
                     </h4>
                     <div className='mb-2'>
                       <h6 className='mb-0 text-muted'>Location</h6>
@@ -100,7 +99,7 @@ class Search extends Component {
                     </div>
                     <div>
                       <h6 className='mb-0 text-muted'>Qualification</h6>
-                      <small>{qualification}</small>
+                      <small>{graduated_college}</small>
                     </div>
                   </div>
                   <div className='col d-flex flex-column align-items-end'>
@@ -110,18 +109,24 @@ class Search extends Component {
                     </div>
                     <div className='text-end'>
                       <small className='mb-0 text-muted'>Visiting</small>
-                      <h5>{visiting} Taka</h5>
+                      <h5>{visiting_fee} Taka</h5>
                     </div>
                     <div className='mt-auto'>
-                      <button className='btn btn-secondary ms-1' onClick={() => onChange('review_modal', true)}>
+                      <button
+                        className='btn btn-secondary ms-1'
+                        onClick={() =>
+                          onChange('review_modal', true, () =>
+                            onChange('license_number', license_number, () => fetchReview({ license_number }))
+                          )}
+                      >
                         See Review
                       </button>
                       <button
                         className='btn btn-primary ms-1'
-                        onClick={() => {
-                          onChange('selected_id', _id)
-                          return onChange('appointment_modal', true)
-                        }}
+                        onClick={e =>
+                          onChange('appointment_modal', true, () =>
+                            onChange('license_number', license_number, () => fetchReview({ license_number }))
+                          )}
                       >
                         Ask for Appointment
                       </button>
@@ -147,7 +152,7 @@ class Search extends Component {
                       name='search'
                       id='search'
                       placeholder='Search'
-                      onChange={e => onChange(e.target.name, e.target.value)}
+                      onChange={e => onChange(e.target.name, e.target.value, onFilterChange)}
                       value={search}
                     />
                     <label htmlFor='search' className='ps-3'>
@@ -172,7 +177,7 @@ class Search extends Component {
                   step='1'
                   style={{ width: '100%' }}
                   value={rating}
-                  onChange={e => onChange(e.target.name, e.target.value)}
+                  onChange={e => onChange(e.target.name, e.target.value, onFilterChange)}
                 />
                 <div className='d-flex justify-content-between px-1'>
                   <span>5</span>
@@ -195,7 +200,7 @@ class Search extends Component {
                     name='visint_fee_0'
                     id='visint_fee_0'
                     checked={visint_fee_0}
-                    onChange={e => onChange(e.target.name, e.target.checked)}
+                    onChange={e => onChange(e.target.name, e.target.checked, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='visint_fee_0'>
                     0 ৳
@@ -208,7 +213,7 @@ class Search extends Component {
                     name='visint_fee_100'
                     id='visint_fee_100'
                     checked={visint_fee_100}
-                    onChange={e => onChange(e.target.name, e.target.checked)}
+                    onChange={e => onChange(e.target.name, e.target.checked, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='visint_fee_100'>
                     100 ৳
@@ -221,7 +226,7 @@ class Search extends Component {
                     name='visint_fee_200'
                     id='visint_fee_200'
                     checked={visint_fee_200}
-                    onChange={e => onChange(e.target.name, e.target.checked)}
+                    onChange={e => onChange(e.target.name, e.target.checked, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='visint_fee_200'>
                     200 ৳
@@ -234,7 +239,7 @@ class Search extends Component {
                     name='visint_fee_500'
                     id='visint_fee_500'
                     checked={visint_fee_500}
-                    onChange={e => onChange(e.target.name, e.target.checked)}
+                    onChange={e => onChange(e.target.name, e.target.checked, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='visint_fee_500'>
                     500 ৳
@@ -247,7 +252,7 @@ class Search extends Component {
                     name='visint_fee_1000'
                     id='visint_fee_1000'
                     checked={visint_fee_1000}
-                    onChange={e => onChange(e.target.name, e.target.checked)}
+                    onChange={e => onChange(e.target.name, e.target.checked, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='visint_fee_1000'>
                     1,000 ৳
@@ -260,7 +265,7 @@ class Search extends Component {
                     name='visint_fee_2000'
                     id='visint_fee_2000'
                     checked={visint_fee_2000}
-                    onChange={e => onChange(e.target.name, e.target.checked)}
+                    onChange={e => onChange(e.target.name, e.target.checked, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='visint_fee_2000'>
                     2,000 ৳
@@ -278,7 +283,7 @@ class Search extends Component {
                     name='specialised_all'
                     id='specialised_all'
                     checked={specialised === 'specialised_all'}
-                    onChange={e => onChange('specialised', e.target.name)}
+                    onChange={e => onChange('specialised', e.target.name, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='specialised_all'>
                     All
@@ -291,7 +296,7 @@ class Search extends Component {
                     name='specialised_eye'
                     id='specialised_eye'
                     checked={specialised === 'specialised_eye'}
-                    onChange={e => onChange('specialised', e.target.name)}
+                    onChange={e => onChange('specialised', e.target.name, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='specialised_eye'>
                     Eye
@@ -304,7 +309,7 @@ class Search extends Component {
                     name='specialised_heart'
                     id='specialised_heart'
                     checked={specialised === 'specialised_heart'}
-                    onChange={e => onChange('specialised', e.target.name)}
+                    onChange={e => onChange('specialised', e.target.name, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='specialised_heart'>
                     Heart
@@ -317,7 +322,7 @@ class Search extends Component {
                     name='specialised_kidney'
                     id='specialised_kidney'
                     checked={specialised === 'specialised_kidney'}
-                    onChange={e => onChange('specialised', e.target.name)}
+                    onChange={e => onChange('specialised', e.target.name, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='specialised_kidney'>
                     Kidney
@@ -330,7 +335,7 @@ class Search extends Component {
                     name='specialised_dermatologist'
                     id='specialised_dermatologist'
                     checked={specialised === 'specialised_dermatologist'}
-                    onChange={e => onChange('specialised', e.target.name)}
+                    onChange={e => onChange('specialised', e.target.name, onFilterChange)}
                   />
                   <label className='form-check-label' htmlFor='specialised_dermatologist'>
                     Dermatologist
@@ -341,14 +346,12 @@ class Search extends Component {
           </div>
         </section>
 
-        {appointment_modal && (
+        {appointment_modal &&
+        license_number && (
           <div className='modal' tabindex='-1'>
             <div
               className='backdrop'
-              onClick={() => {
-                onChange('selected_id', '')
-                onChange('appointment_modal', false)
-              }}
+              onClick={() => onChange('appointment_modal', false, onChange('license_number', ''))}
             />
             <div className='modal-dialog modal-dialog-centered'>
               <div className='modal-content'>
@@ -359,17 +362,14 @@ class Search extends Component {
                   <button
                     type='button'
                     className='btn-close'
-                    onClick={() => {
-                      onChange('selected_id', '')
-                      onChange('appointment_modal', false)
-                    }}
+                    onClick={() => onChange('appointment_modal', false, onChange('license_number', ''))}
                   />
                 </div>
                 <div className='modal-body py-0'>
                   <div className='row py-0 m-0'>
                     <div className='col-md-4'>
                       <div
-                        className='container col d-flex flex-column justify-content-between px-2'
+                        className='container col d-flex flex-column justify-content-between pt-2 px-2'
                         style={{ height: '100%' }}
                       >
                         {/* Doctor */}
@@ -401,7 +401,7 @@ class Search extends Component {
                   <button className='btn btn-secondary ms-1' onClick={() => onChange('appointment_modal', false)}>
                     Cancel
                   </button>
-                  <button className='btn btn-primary ms-1' onClick={() => onNewAppointment(selected_id)}>
+                  <button className='btn btn-primary ms-1' onClick={() => onNewAppointment(license_number)}>
                     Confirm Appointment
                   </button>
                 </div>
@@ -409,116 +409,73 @@ class Search extends Component {
             </div>
           </div>
         )}
-        {review_modal && (
+        {review_modal &&
+        license_number && (
           <div className='modal' tabindex='-1'>
-            <div className='backdrop' onClick={() => onChange('review_modal', false)} />
-            <div className='modal-dialog modal-lg modal-dialog-centered'>
+            <div className='backdrop' onClick={() => onChange('review_modal', false, onChange('license_number', ''))} />
+            <div className='modal-dialog modal-dialog-centered modal-lg'>
               <div className='modal-content'>
                 <div className='modal-header'>
                   <h5 className='modal-title' id='exampleModalLabel'>
-                    Details
+                    Review
                   </h5>
-                  <button type='button' className='btn-close' onClick={() => onChange('review_modal', false)} />
+                  <button
+                    type='button'
+                    className='btn-close'
+                    onClick={() => {
+                      onChange('license_number', '')
+                      onChange('review_modal', false)
+                    }}
+                  />
                 </div>
                 <div className='modal-body py-0'>
                   <div className='row py-0 m-0'>
-                    <div className='col-md-4'>
+                    <div className='col-4'>
                       <div
-                        className='container col d-flex flex-column justify-content-between px-2'
+                        className='container col d-flex flex-column justify-content-between pt-1 px-2'
                         style={{ height: '100%' }}
                       >
-                        {/* Doctor */}
+                        {/* Review */}
                         <div className='row'>
                           <h4 className='card-title mt-2'>
-                            name
+                            {doctor_list.find(e => e.license_number === license_number).name}
                             <br />
-                            <small className='text-muted'>Specialized</small>
+                            <small className='text-muted'>Dermatologist</small>
                           </h4>
                           <div className='mb-3'>
-                            <h6 className='mb-0'>Rating: 4/5</h6>
+                            <h6 className='mb-0 text-primary'>
+                              Rating: {doctor_list.find(e => e.license_number === license_number).rating}/5
+                            </h6>
                           </div>
                           <div className='mb-1'>
                             <small className='text-muted'>Qualification</small>
-                            <h6 className='mb-0'>qualification</h6>
+                            <h6 className='mb-0'>
+                              Dhaka Medical
+                              {/* {doctor_list.find(e => e._id === license_number).qualification} */}
+                            </h6>
                           </div>
                           <div className='mb-1'>
                             <small className='text-muted'>Location</small>
-                            <h6 className='mb-0'>location</h6>
+                            <h6 className='mb-0'>
+                              {doctor_list.find(e => e.license_number === license_number).location}
+                            </h6>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className='col-md-8 m-0 py-4 scrollable'>
-                      <div className='card my-1'>
-                        <div className='card-body'>
-                          <div className='d-flex justify-content-between px-1'>
-                            <h6>Name</h6>
-                            <b>1/5</b>
+                    <div className='col-8 m-0 py-4 scrollable'>
+                      {review_list.map(({ id, name, ratings, comments }) => (
+                        <div key={id} className='card my-1'>
+                          <div className='card-body'>
+                            <div className='d-flex justify-content-between px-1'>
+                              <h6>{name}</h6>
+                              <b>{ratings}/5</b>
+                            </div>
+                            <hr />
+                            <p>{comments}</p>
                           </div>
-                          <hr />
-                          <p>Lorem ipson</p>
                         </div>
-                      </div>
-                      <div className='card my-1'>
-                        <div className='card-body'>
-                          <div className='d-flex justify-content-between px-1'>
-                            <h6>Name</h6>
-                            <b>1/5</b>
-                          </div>
-                          <hr />
-                          <p>Lorem ipson</p>
-                        </div>
-                      </div>
-                      <div className='card my-1'>
-                        <div className='card-body'>
-                          <div className='d-flex justify-content-between px-1'>
-                            <h6>Name</h6>
-                            <b>1/5</b>
-                          </div>
-                          <hr />
-                          <p>Lorem ipson</p>
-                        </div>
-                      </div>
-                      <div className='card my-1'>
-                        <div className='card-body'>
-                          <div className='d-flex justify-content-between px-1'>
-                            <h6>Name</h6>
-                            <b>1/5</b>
-                          </div>
-                          <hr />
-                          <p>Lorem ipson</p>
-                        </div>
-                      </div>
-                      <div className='card my-1'>
-                        <div className='card-body'>
-                          <div className='d-flex justify-content-between px-1'>
-                            <h6>Name</h6>
-                            <b>1/5</b>
-                          </div>
-                          <hr />
-                          <p>Lorem ipson</p>
-                        </div>
-                      </div>
-                      <div className='card my-1'>
-                        <div className='card-body'>
-                          <div className='d-flex justify-content-between px-1'>
-                            <h6>Name</h6>
-                            <b>1/5</b>
-                          </div>
-                          <hr />
-                          <p>Lorem ipson</p>
-                        </div>
-                      </div>
-                      <div className='card my-1'>
-                        <div className='card-body'>
-                          <div className='d-flex justify-content-between px-1'>
-                            <h6>Name</h6>
-                            <b>1/5</b>
-                          </div>
-                          <hr />
-                          <p>Lorem ipson</p>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -534,10 +491,12 @@ class Search extends Component {
 
 const mapStateToProps = state => ({
   doctor_list : state.doctor.doctor_list,
+  review_list : state.review.review_list,
   ssn         : state.user.ssn,
 })
 const mapDispatchToProps = dispatch => ({
   fetchDoctor       : payload => dispatch(doctorAction.send.fetch(payload)),
+  fetchReview       : payload => dispatch(reviewAction.send.fetch(payload)),
   createAppointment : payload => dispatch(appointmentAction.send.create(payload)),
 })
 

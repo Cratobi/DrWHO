@@ -9,7 +9,7 @@ const fetch = async payload => {
 
     const { data } = await Axios({
       method : 'GET',
-      url    : `/${url}/${params.join('/')}`,
+      url    : `/${url}/fetch.php${params.join('/')}`,
       params : {
         ...query,
       },
@@ -30,7 +30,7 @@ const create = async payload => {
 
     const { data } = await Axios({
       method : 'POST',
-      url    : `/${url}`,
+      url    : `/${url}/create.php`,
       data   : {
         ...body,
       },
@@ -51,7 +51,7 @@ const modify = async payload => {
 
     const { data } = await Axios({
       method : 'PATCH',
-      url    : `/${url}/${params.join('/')}`,
+      url    : `/${url}/update.php${params.join('/')}`,
       data   : {
         ...body,
       },
@@ -72,7 +72,7 @@ const replace = async payload => {
 
     const { data } = await Axios({
       method : 'PUT',
-      url    : `/${url}/${params.join('/')}`,
+      url    : `/${url}/remove.php${params.join('/')}`,
       data   : {
         ...body,
       },

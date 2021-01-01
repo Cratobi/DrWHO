@@ -54,7 +54,7 @@ class Login extends Component {
                   </b>
                 </div>
               </div>
-              <form className='row g-3 needs-validation' novalidate>
+              <form className='row g-3 needs-validation' noValidate>
                 <div className='form-floating'>
                   <input
                     type='text'
@@ -65,7 +65,7 @@ class Login extends Component {
                     onChange={e => onChange(e.target.name, e.target.value)}
                     required={true}
                   />
-                  <label for='username' className='form-label text-muted ps-4'>
+                  <label htmlFor='username' className='form-label text-muted ps-4'>
                     Email Address or Phone
                   </label>
                   <div className='invalid-feedback'>Username is required</div>
@@ -79,7 +79,7 @@ class Login extends Component {
                     onChange={e => onChange(e.target.name, e.target.value)}
                     required={true}
                   />
-                  <label for='password' className='form-label text-muted ps-4'>
+                  <label htmlFor='password' className='form-label text-muted ps-4'>
                     Password
                   </label>
                   <div className='invalid-feedback'>Password is required</div>
@@ -94,7 +94,7 @@ class Login extends Component {
                       value={keep_logged_in}
                       onChange={e => onChange(e.target.name, e.target.checked)}
                     />
-                    <label className='form-check-label' for='keep_logged_in'>
+                    <label className='form-check-label' htmlFor='keep_logged_in'>
                       Keep logged in
                     </label>
                   </div>

@@ -51,59 +51,59 @@ function* handleFetch({ payload = {} }) {
     }
 
     yield put(request())
-    // const { data, error } = yield call(Api.fetch, [ url, { params, query } ])
+    const { data, error } = yield call(Api.fetch, [ url, { params, query } ])
 
-    const error = false
-    const data = [
-      {
-        _id           : '5fd769977560ec68a86d5343',
-        avatar        : 'https://thispersondoesnotexist.com/image',
-        name          : 'Dr. Johns Sims',
-        qualification : 'Ipsum pariatur cupidatat dolore ad excepteur. Id id excepteur veniam enim.',
-        location      : '679 Christopher Avenue, Islandia',
-        rating        : 'Good',
-        visiting      : 500,
-      },
-      {
-        _id           : '5fd76997f47c84fafd876852',
-        avatar        : 'https://thispersondoesnotexist.com/image',
-        name          : 'Dr. Yvonne Knox',
-        qualification :
-          'Adipisicing veniam culpa mollit non irure doctoror commodo ipsum. Amet irure deserunt eu velit laborum irure cupidatat proident officia nisi irure laboris enim.',
-        location      : '549 Argyle Road, Lewis',
-        rating        : 'Good',
-        visiting      : 500,
-      },
-      {
-        _id           : '5fd76997f8b8272b5fed1199',
-        avatar        : 'https://thispersondoesnotexist.com/image',
-        name          : 'Dr. Kim Love',
-        qualification :
-          'Labore enim est in eu id ex fugiat pariatur est fugiat. Velit anim mollit laboris elit magna. Est reprehenderit deserunt duis fugiat mollit.',
-        location      : '687 Claver Place, Urie',
-        rating        : 'Good',
-        visiting      : 500,
-      },
-      {
-        _id           : '5fd76997a847009309629648',
-        avatar        : 'https://thispersondoesnotexist.com/image',
-        name          : 'Dr. Betsy Sellers',
-        qualification : 'Proident commodo reprehenderit dolore aliquip deserunt.',
-        location      : '260 Oak Street, Breinigsville',
-        rating        : 'Bad',
-        visiting      : 500,
-      },
-      {
-        _id           : '5fd76997f9a14b7e97981bd7',
-        avatar        : 'https://thispersondoesnotexist.com/image',
-        name          : 'Dr. Alejandra Calderon',
-        qualification :
-          'Esse cupidatat enim ipsum deserunt officia. Laboris ad elit est qui commodo consectetur qui in ipsum nisi exercitation fugiat magna. Ea eiusmod laborum magna adipisicing ad consequat magna occaecat esse cillum deserunt dolore.',
-        location      : '185 Story Court, Gratton',
-        rating        : 'Okay',
-        visiting      : 500,
-      },
-    ]
+    // const error = false
+    // const data = [
+    //   {
+    //     license_number : 'C2fc3aqe',
+    //     avatar         : 'https://thispersondoesnotexist.com/image',
+    //     name           : 'Dr. Johns Sims',
+    //     qualification  : 'Ipsum pariatur cupidatat dolore ad excepteur. Id id excepteur veniam enim.',
+    //     location       : '679 Christopher Avenue, Islandia',
+    //     rating         : 'Good',
+    //     visiting       : 500,
+    //   },
+    //   {
+    //     license_number : 'C2fc3aqe',
+    //     avatar         : 'https://thispersondoesnotexist.com/image',
+    //     name           : 'Dr. Yvonne Knox',
+    //     qualification  :
+    //       'Adipisicing veniam culpa mollit non irure doctoror commodo ipsum. Amet irure deserunt eu velit laborum irure cupidatat proident officia nisi irure laboris enim.',
+    //     location       : '549 Argyle Road, Lewis',
+    //     rating         : 'Good',
+    //     visiting       : 500,
+    //   },
+    //   {
+    //     license_number : 'C2fc3aqe',
+    //     avatar         : 'https://thispersondoesnotexist.com/image',
+    //     name           : 'Dr. Kim Love',
+    //     qualification  :
+    //       'Labore enim est in eu id ex fugiat pariatur est fugiat. Velit anim mollit laboris elit magna. Est reprehenderit deserunt duis fugiat mollit.',
+    //     location       : '687 Claver Place, Urie',
+    //     rating         : 'Good',
+    //     visiting       : 500,
+    //   },
+    //   {
+    //     license_number : 'C2fc3aqe',
+    //     avatar         : 'https://thispersondoesnotexist.com/image',
+    //     name           : 'Dr. Betsy Sellers',
+    //     qualification  : 'Proident commodo reprehenderit dolore aliquip deserunt.',
+    //     location       : '260 Oak Street, Breinigsville',
+    //     rating         : 'Bad',
+    //     visiting       : 500,
+    //   },
+    //   {
+    //     license_number : 'C2fc3aqe',
+    //     avatar         : 'https://thispersondoesnotexist.com/image',
+    //     name           : 'Dr. Alejandra Calderon',
+    //     qualification  :
+    //       'Esse cupidatat enim ipsum deserunt officia. Laboris ad elit est qui commodo consectetur qui in ipsum nisi exercitation fugiat magna. Ea eiusmod laborum magna adipisicing ad consequat magna occaecat esse cillum deserunt dolore.',
+    //     location       : '185 Story Court, Gratton',
+    //     rating         : 'Okay',
+    //     visiting       : 500,
+    //   },
+    // ]
     if (!error) {
       yield put(replace({ key: 'doctor_list', data }))
       yield put(success())
@@ -180,7 +180,7 @@ function* watch() {
   yield takeEvery(DOCTOR.SEND.FETCH, handleFetch)
   // yield takeEvery(DOCTOR.SEND.CREATE, handleCreate)
   // yield takeEvery(DOCTOR.SEND.MODIFY, handleModify)
-  // yield takeEvery(DOCTOR.SEND.REMVOE, handleRemove)
+  // yield takeEvery(DOCTOR.SEND.REMOVE, handleRemove)
 }
 
 export default watch

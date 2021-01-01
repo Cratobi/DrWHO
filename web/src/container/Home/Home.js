@@ -11,6 +11,8 @@ import AdminNav from '../Nav/AdminNav'
 
 import Search from '../Search/Search'
 import Appointment from '../Appointment/Appointment'
+import AppointmentDoctor from '../Appointment/AppointmentDoctor'
+import Takein from '../Takein/Takein'
 import Review from '../Review/Review'
 
 class Home extends Component {
@@ -73,7 +75,9 @@ class Home extends Component {
               <Route path='/patient/search' exact component={Search} />
               <Route path='/patient/appointments' exact component={Appointment} />
               <Route path='/patient/reviews' exact component={Review} />
-              <Route path='/doctor/appointments' exact component={Appointment} />
+              <Route path='/doctor/appointments' exact component={AppointmentDoctor} />
+              <Route path='/doctor/takein' exact component={Takein} />
+              <Route path='/doctor/reviews' exact component={Review} />
             </Switch>
           </section>
         </div>

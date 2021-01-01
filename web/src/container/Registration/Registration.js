@@ -27,16 +27,17 @@ class Registration extends Component {
                   </b>
                 </div>
               </div>
-              <form className='row g-3 needs-validation' novalidate>
+              <form className='row g-3 needs-validation' noValidate>
                 <div className='form-floating'>
                   <input
                     type='text'
                     className='form-control ps-3'
-                    id='exampleFormControlInput1'
+                    name='name'
+                    id='name'
                     placeholder='name@example.com'
                     required
                   />
-                  <label for='visiting-fee' className='form-label text-muted ps-4'>
+                  <label htmlFor='username' className='form-label text-muted ps-4'>
                     Full Name
                   </label>
                   <div className='invalid-feedback'>Username is required</div>
@@ -45,11 +46,12 @@ class Registration extends Component {
                   <input
                     type='text'
                     className='form-control ps-3'
-                    id='exampleFormControlInput1'
+                    name='username'
+                    id='username'
                     placeholder='name@example.com'
                     required
                   />
-                  <label for='visiting-fee' className='form-label text-muted ps-4'>
+                  <label htmlFor='username' className='form-label text-muted ps-4'>
                     Username
                   </label>
                   <div className='invalid-feedback'>Username is required</div>
@@ -58,11 +60,12 @@ class Registration extends Component {
                   <input
                     type='password'
                     className='form-control ps-3'
-                    id='exampleFormControlInput1'
+                    name='password'
+                    id='password'
                     placeholder='name@example.com'
                     required
                   />
-                  <label for='visiting-fee' className='form-label text-muted ps-4'>
+                  <label htmlFor='password' className='form-label text-muted ps-4'>
                     Password
                   </label>
                   <div className='invalid-feedback'>Password is required</div>
@@ -70,20 +73,20 @@ class Registration extends Component {
                 <div className='form-group ms-2'>
                   <h6 className='text-muted'>Gender</h6>
                   <div className='form-check'>
-                    <input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault1' />
-                    <label className='form-check-label' for='flexRadioDefault1'>
+                    <input className='form-check-input' type='radio' name='gender' id='gender_male' />
+                    <label className='form-check-label' htmlFor='gender_male'>
                       Male
                     </label>
                   </div>
                   <div className='form-check'>
-                    <input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' />
-                    <label className='form-check-label' for='flexRadioDefault2'>
+                    <input className='form-check-input' type='radio' name='gender' id='gender_female' />
+                    <label className='form-check-label' htmlFor='gender_female'>
                       Female
                     </label>
                   </div>
                   <div className='form-check'>
-                    <input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' />
-                    <label className='form-check-label' for='flexRadioDefault2'>
+                    <input className='form-check-input' type='radio' name='gender' id='gender_other' />
+                    <label className='form-check-label' htmlFor='gender_other'>
                       Other
                     </label>
                   </div>
@@ -100,14 +103,14 @@ class Registration extends Component {
                     <option value='O+'> O + (O Positive) </option>
                     <option value='O-'> O - (O Negative) </option>
                   </select>
-                  <label for='floatingSelect' className='ps-4'>
+                  <label htmlFor='floatingSelect' className='ps-4'>
                     Blood Grooup
                   </label>
                 </div>
                 <div className='col-12'>
                   <div className='form-check'>
                     <input className='form-check-input' type='checkbox' value='' id='invalidCheck' required />
-                    <label className='form-check-label' for='invalidCheck'>
+                    <label className='form-check-label' htmlFor='invalidCheck'>
                       Keep logged in
                     </label>
                     <div className='invalid-feedback'>You must agree before submitting.</div>

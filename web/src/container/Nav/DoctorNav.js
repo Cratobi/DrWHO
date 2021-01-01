@@ -8,7 +8,8 @@ function DoctorNav() {
       <NavBar
         navigations={[
           { link: '/doctor/appointments', name: 'Appointments', icon: 'today' },
-          { link: '/doctor/reviews', name: 'Reviews', icon: 'rate_review' },
+          { link: '/doctor/takein', name: 'Take in', icon: 'assignment_ind' },
+          { link: '/doctor/reviews', name: 'Feedbacks', icon: 'insert_comment' },
         ]}
       />
     </Fragment>

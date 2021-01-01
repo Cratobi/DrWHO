@@ -26,6 +26,24 @@
   }
 }
 
+// DATE
+.appointment-datepicker {
+  .react-date-picker__wrapper {
+    padding: .175rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    margin-bottom: -1rem;
+    border-radius: .25rem 0 0 .25rem;
+    background-color: #ebebeb;
+    border: 1px solid transparent !important;
+    border-radius: .25rem;
+  }
+  .react-date-picker__calendar {
+    z-index: 100;
+  }
+}
+
 .modal {
   display: block;
 
@@ -35,12 +53,23 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1px);
+    animation: fadeModal 800ms;
   }
 
   .modal-dialog {
     // width: 100%;
+  }
+}
+@keyframes fadeModal {
+  from {
+    background-color: rgba(0, 0, 0, 0.0);
+    backdrop-filter: blur(0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1px);
   }
 }
 .scrollable {
@@ -58,6 +87,7 @@
     // padding: 0.6rem 1.2rem;
     // margin-bottom: 0.3rem;
     color: $greyscale-300;
+    box-shadow: 0 0 0 transparent !important;
 
     &.active {
       color: $greyscale-600;
@@ -74,6 +104,15 @@
         position: absolute;
         margin-left: -1.4rem;
         z-index: 2;
+        animation: fadeNavDot 400ms;
+      }
+    }
+    @keyframes fadeNavDot {
+      from {
+        background-color: transparent;
+      }
+      to {
+        background-color: $primary-500;
       }
     }
 

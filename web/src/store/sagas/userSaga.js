@@ -2,10 +2,10 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import Api from './api/api'
 
 import { USER } from '../constants'
-import { doctorAction } from '../actions'
+import { userAction } from '../actions'
 
-const { replace, addTop, addBottom, modify, remove } = doctorAction.save
-const { request, success, failed } = doctorAction.status
+const { replace, addTop, addBottom, modify, remove } = userAction.save
+const { request, success, failed } = userAction.status
 
 const url = 'doctor'
 
@@ -117,7 +117,7 @@ function* watchDoctor() {
   yield takeLatest(USER.SEND.FETCH, handleFetch)
   // yield takeLatest(USER.SEND.CREATE, handleCreate)
   // yield takeLatest(USER.SEND.MODIFY, handleModify)
-  // yield takeLatest(USER.SEND.REMVOE, handleRemove)
+  // yield takeLatest(USER.SEND.REMOVE, handleRemove)
 }
 
 export default watchDoctor

@@ -96,7 +96,7 @@ function* watchTemp() {
   yield takeLatest(TEMP.SEND.FETCH, handleFetch)
   yield takeLatest(TEMP.SEND.CREATE, handleCreate)
   yield takeLatest(TEMP.SEND.MODIFY, handleModify)
-  yield takeLatest(TEMP.SEND.REMVOE, handleRemove)
+  yield takeLatest(TEMP.SEND.REMOVE, handleRemove)
 }
 
 export default watchTemp
