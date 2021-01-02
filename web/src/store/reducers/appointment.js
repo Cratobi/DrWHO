@@ -38,7 +38,6 @@ const appointment = (state = initialState, { type, payload }) => {
       let toModify
       newState[payload.key].find((e, index) => e._id === payload.id && (toModify = index))
 
-      console.log(toModify)
       newState[payload.key][toModify] = payload.data
 
       return newState

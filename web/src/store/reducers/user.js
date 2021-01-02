@@ -3,14 +3,18 @@ import cloneDeep from 'lodash.clonedeep'
 import { USER } from '../constants'
 
 const initialState = {
-  ssn            : '',
-  license_number : '',
-  bloodgroup     : '',
-  phone_number   : '',
-  dateofbirth    : '',
-  is_admin       : false,
+  user   : {
+    ssn            : null,
+    name           : null,
+    license_number : null,
+    email          : null,
+    bloodgroup     : null,
+    phone_number   : null,
+    dateofbirth    : null,
+    is_admin       : false,
+  },
 
-  status         : {
+  status : {
     success : false,
     request : false,
     failed  : false,

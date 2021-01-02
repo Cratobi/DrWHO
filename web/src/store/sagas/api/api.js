@@ -50,7 +50,7 @@ const modify = async payload => {
     const { params = '', body } = payload[1]
 
     const { data } = await Axios({
-      method : 'PATCH',
+      method : 'PUT',
       url    : `/${url}/update.php${params.join('/')}`,
       data   : {
         ...body,

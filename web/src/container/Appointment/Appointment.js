@@ -5,7 +5,8 @@ import { format } from 'fecha'
 
 class Appointment extends Component {
   componentDidMount() {
-    this.props.fetchAppointment()
+    this.props.fetchAppointment({ ssn: this.props.user.ssn, license_number: '' })
+    // this.props.fetchAppointment({ ssn: this.props.user.ssn })
   }
 
   state = {
@@ -39,7 +40,7 @@ class Appointment extends Component {
               .filter(item => item.is_accepted === 'A')
               .map(
                 ({
-                  id,
+                  id_appointment,
                   ssn,
                   license_number,
                   is_accepted,
@@ -50,7 +51,7 @@ class Appointment extends Component {
                   date,
                   diagnosed_disease,
                 }) => (
-                  <div key={id} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+                  <div key={id_appointment} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                     <div className='card-body row'>
                       <div className='col'>
                         {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
@@ -72,13 +73,13 @@ class Appointment extends Component {
                           <h6>{format(new Date(date), 'Do MMM, YYYY (hh:mm A)')}</h6>
                         </div>
                         <div className='mt-auto'>
-                          <button
+                          {/* <button
                             className='btn btn-danger'
                             onClick={() =>
                               onChange('confirmation_modal', true, () => onChange('license_number', license_number))}
                           >
                             Cancel
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </div>
@@ -99,7 +100,7 @@ class Appointment extends Component {
             .filter(item => item.is_accepted !== 'P' || item.is_accepted !== 'D')
             .map(
               ({
-                id,
+                id_appointment,
                 ssn,
                 license_number,
                 is_accepted,
@@ -110,7 +111,7 @@ class Appointment extends Component {
                 date,
                 diagnosed_disease,
               }) => (
-                <div key={id} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+                <div key={id_appointment} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                   <div className='card-body row'>
                     <div className='col'>
                       {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
@@ -162,8 +163,7 @@ class Appointment extends Component {
                 <div className='modal-footer'>
                   <button
                     className='btn btn-danger'
-                    onClick={() =>
-                      onChange('confirmation_modal', false, () => removeAppointment({ _id: license_number }))}
+                    onClick={() => onChange('confirmation_modal', false, () => removeAppointment({ license_number }))}
                   >
                     Cancel Appointment
                   </button>
@@ -181,6 +181,7 @@ class Appointment extends Component {
 }
 
 const mapStateToProps = state => ({
+  user             : state.user.user,
   appointment_list : state.appointment.appointment_list,
 })
 const mapDispatchToProps = dispatch => ({

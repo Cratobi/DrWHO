@@ -4,12 +4,12 @@ import { reviewAction, appointmentAction } from '../../store/actions'
 
 class Review extends Component {
   componentDidMount() {
-    this.props.fetchAppointment()
+    this.props.fetchAppointment({ ssn: 9, license_number: '' })
   }
   state = {
-    review_modal   : false,
+    id_appointment : '',
+    review_modal   : '',
     license_number : '',
-    id             : '',
     ratings        : '0',
     comments       : '',
   }
@@ -23,17 +23,16 @@ class Review extends Component {
 
   onSendReview = () => {
     this.props.createReview({
-      given_by       : '4',
-      // given_by       : this.props.ssn,
       license_number : this.state.license_number,
       ratings        : +this.state.ratings,
       comments       : this.state.comments,
+      given_by       : 9,
     })
 
     this.setState({
       review_modal   : false,
       license_number : '',
-      id             : '',
+      id_appointment : '',
       ratings        : '0',
       comments       : '',
     })
@@ -42,7 +41,7 @@ class Review extends Component {
   render() {
     const { onChange, onSendReview } = this
     const { review_list, appointment_list } = this.props
-    const { id, review_modal, ratings, comments } = this.state
+    const { id_appointment, review_modal, ratings, comments } = this.state
 
     return (
       <Fragment>
@@ -58,7 +57,7 @@ class Review extends Component {
               .filter(item => item.is_accepted === 'A')
               .map(
                 ({
-                  id,
+                  id_appointment,
                   ssn,
                   license_number,
                   is_accepted,
@@ -69,7 +68,7 @@ class Review extends Component {
                   date,
                   diagnosed_disease,
                 }) => (
-                  <div key={license_number} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+                  <div key={id_appointment} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
                     <div className='card-body row'>
                       <div className='col'>
                         {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
@@ -84,27 +83,27 @@ class Review extends Component {
                           <h6 className='mb-0 text-muted'>Medical comments</h6>
                           <small>{diagnosed_disease}</small>
                         </div>
-                        <div className='mb-2'>
+                        {/* <div className='mb-2'>
                           <h6 className='text-muted'>Diagnosis Report</h6>
                           <a href='#' className='fw-bold font-monospace text-decoration-underline'>
                             <i className='material-icons fs-6'>attach_file</i>
                             Download File
                           </a>
-                        </div>
+                        </div>*/}
                       </div>
                       <div className='col d-flex flex-column align-items-end'>
-                        <div className='text-end'>
+                        {/* <<div className='text-end'>
                           <small className='mb-0 text-muted'>Date & Time</small>
-                          {/* <h6>{format(new Date(date), 'Do MMM, YYYY (hh:mm A)')}</h6> */}
-                        </div>
+                          h6>{format(new Date(date), 'Do MMM, YYYY (hh:mm A)')}</h6>
+                        </div>*/}
                         <div className='mt-auto'>
                           <button
                             className='btn btn-primary ms-1'
                             onClick={() =>
-                              onChange('id', id, () =>
-                                onChange('review_modal', true, () =>
-                                  onChange('license_number', license_number, () =>
-                                    this.props.fetchReview({ license_number })
+                              onChange('id_appointment', id_appointment, () =>
+                                onChange('license_number', license_number, () =>
+                                  onChange('review_modal', true, () =>
+                                    this.props.fetchReview({ license_number, id_review: '' })
                                   )
                                 )
                               )}
@@ -127,9 +126,12 @@ class Review extends Component {
         </section>
 
         {review_modal &&
-        id && (
+        id_appointment && (
           <div className='modal' tabindex='-1'>
-            <div className='backdrop' onClick={() => onChange('review_modal', false, () => onChange('id', ''))} />
+            <div
+              className='backdrop'
+              onClick={() => onChange('review_modal', false, () => onChange('id_appointment', ''))}
+            />
             <div className='modal-dialog modal-dialog-centered modal-lg'>
               <div className='modal-content'>
                 <div className='modal-header'>
@@ -139,24 +141,25 @@ class Review extends Component {
                   <button
                     type='button'
                     className='btn-close'
-                    onClick={() => onChange('review_modal', false, () => onChange('id', ''))}
+                    onClick={() => onChange('review_modal', false, () => onChange('id_appointment', ''))}
                   />
                 </div>
                 <div className='modal-body py-0'>
                   <div className='row py-0 m-0'>
                     <div className='col-md-8 m-0 py-4 scrollable'>
-                      {review_list.map(({ id, name, ratings, comments }) => (
-                        <div key={id} className='card my-1'>
-                          <div className='card-body'>
-                            <div className='d-flex justify-content-between px-1'>
-                              <h6>{name}</h6>
-                              <b>{ratings}/5</b>
+                      {review_list.length != 0 &&
+                        review_list.map(({ id_review, name, ratings, comments }) => (
+                          <div key={id_review} className='card my-1'>
+                            <div className='card-body'>
+                              <div className='d-flex justify-content-between px-1'>
+                                <h6>{name}</h6>
+                                <b>{ratings}/5</b>
+                              </div>
+                              <hr />
+                              <p>{comments}</p>
                             </div>
-                            <hr />
-                            <p>{comments}</p>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                     <div className='col-md-4'>
                       <div
@@ -166,18 +169,22 @@ class Review extends Component {
                         {/* Review */}
                         <div className='row'>
                           <h4 className='card-title mt-2'>
-                            {appointment_list.find(e => e.id === id).doctor_name}
+                            {appointment_list.find(e => e.id_appointment === id_appointment).doctor_name}
                             <br />
-                            <small className='text-muted'>{appointment_list.find(e => e.id === id).specialised}</small>
+                            <small className='text-muted'>
+                              {appointment_list.find(e => e.id_appointment === id_appointment).specialised}
+                            </small>
                           </h4>
                           <div className='mb-2'>
                             <h6 className='mb-0 text-primary'>
-                              Rating: {appointment_list.find(e => e.id === id).ratings}/5
+                              Rating: {appointment_list.find(e => e.id_appointment === id_appointment).ratings}/5
                             </h6>
                           </div>
                           <div className='mb-1'>
                             <small className='text-muted'>Location</small>
-                            <h6 className='mb-0'>{appointment_list.find(e => e.id === id).location}</h6>
+                            <h6 className='mb-0'>
+                              {appointment_list.find(e => e.id_appointment === id_appointment).location}
+                            </h6>
                           </div>
                         </div>
                         {/* Review Input */}
@@ -216,7 +223,7 @@ class Review extends Component {
                               value={comments}
                               onChange={e => onChange(e.target.name, e.target.value)}
                             />
-                            <label htmlFor='comments' className='ms-3'>
+                            <label htmlFor='comments' className='ms-2'>
                               comments
                             </label>
                           </div>

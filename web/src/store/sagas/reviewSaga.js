@@ -13,10 +13,11 @@ const url = 'review'
 
 function* handleFetch({ payload = {} }) {
   try {
-    const { license_number } = payload
+    const { id_review, license_number } = payload
 
     const params = []
     const query = {
+      id_review,
       license_number,
     }
 

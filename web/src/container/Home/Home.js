@@ -14,6 +14,7 @@ import Appointment from '../Appointment/Appointment'
 import AppointmentDoctor from '../Appointment/AppointmentDoctor'
 import Takein from '../Takein/Takein'
 import Review from '../Review/Review'
+import ReviewDoctor from '../Review/ReviewDoctor'
 
 class Home extends Component {
   componentDidMount() {}
@@ -77,7 +78,7 @@ class Home extends Component {
               <Route path='/patient/reviews' exact component={Review} />
               <Route path='/doctor/appointments' exact component={AppointmentDoctor} />
               <Route path='/doctor/takein' exact component={Takein} />
-              <Route path='/doctor/reviews' exact component={Review} />
+              <Route path='/doctor/feedback' exact component={ReviewDoctor} />
             </Switch>
           </section>
         </div>

@@ -5,17 +5,12 @@ import { userAction } from '../../store/actions'
 
 class Login extends Component {
   componentDidMount() {
-    if (this.props.ssn) window.location.reload()
+    if (this.props.user.ssn) window.location.reload()
   }
   state = {
-    username       : '',
+    email          : '',
     password       : '',
     keep_logged_in : false,
-  }
-  componentDidUpdate() {
-    if (this.props.is_admin) this.props.history.push('/admin/user')
-    else if (this.props.license) this.props.history.push('/doctor/appointment')
-    else if (this.props.ssn) this.props.history.push('/patient/search')
   }
 
   onChange = (key, value) => {
@@ -28,15 +23,16 @@ class Login extends Component {
     e.preventDefault()
 
     this.props.fetchUser({
-      username       : this.state.username,
+      email          : this.state.email,
       password       : this.state.password,
       keep_logged_in : this.state.keep_logged_in,
+      push           : this.props.history.push,
     })
   }
 
   render() {
     const { onChange, onSubmit } = this
-    const { username, password, keep_logged_in } = this.state
+    const { email, password, keep_logged_in } = this.state
 
     return (
       <Fragment>
@@ -58,10 +54,10 @@ class Login extends Component {
                 <div className='form-floating'>
                   <input
                     type='text'
-                    name='username'
+                    name='email'
                     className='form-control ps-3'
                     placeholder='name@example.com'
-                    value={username}
+                    value={email}
                     onChange={e => onChange(e.target.name, e.target.value)}
                     required={true}
                   />
@@ -76,6 +72,7 @@ class Login extends Component {
                     name='password'
                     className='form-control ps-3'
                     placeholder='name@example.com'
+                    value={password}
                     onChange={e => onChange(e.target.name, e.target.value)}
                     required={true}
                   />
@@ -128,10 +125,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  ssn      : state.user.ssn,
-  patient  : state.user.patient,
-  license  : state.user.license,
-  is_admin : state.user.is_admin,
+  user : state.user.user,
 })
 const mapDispatchToProps = dispatch => ({
   fetchUser : payload => dispatch(userAction.send.fetch(payload)),

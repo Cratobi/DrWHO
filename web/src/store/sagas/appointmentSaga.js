@@ -15,10 +15,10 @@ const url = 'appointment'
 
 function* handleFetch({ payload = {} }) {
   try {
-    const {} = payload
+    const { ssn, license_number } = payload
 
     const params = []
-    const query = {}
+    const query = { ssn, license_number }
 
     yield put(request())
     const { data, error } = yield call(Api.fetch, [ url, { params, query } ])
@@ -41,10 +41,7 @@ function* handleCreate({ payload = {} }) {
     const body = { ssn, license_number }
 
     yield put(request())
-    // const { data, error } = yield call(Api.create, [ url, { body } ])
-
-    const error = false
-    const data = {}
+    const { data, error } = yield call(Api.create, [ url, { body } ])
 
     if (!error) {
       // yield put(addTop({ key: 'appointment_list', data: license_number }))
@@ -59,37 +56,22 @@ function* handleCreate({ payload = {} }) {
 
 function* handleModify({ payload = {} }) {
   try {
-    const { ssn, date, status, location, name, speciality, time } = payload
+    const { id_appointment, is_accepted } = payload
 
     const params = []
-    const body = {
-      ssn,
-      date,
-      status,
-      location,
-      name,
-      speciality,
-      time,
-    }
+    const body = { id_appointment, is_accepted }
 
     yield put(request())
-    // const { data, error } = yield call(Api.modify, [ url, { params, body } ])
-
-    const error = false
+    const { data, error } = yield call(Api.modify, [ url, { params, body } ])
 
     if (!error) {
       yield put(
         modify({
           key  : 'appointment_list',
-          id   : ssn,
+          id   : id_appointment,
           data : {
-            _id        : ssn,
-            date,
-            status,
-            location,
-            name,
-            speciality,
-            time,
+            id_appointment,
+            is_accepted,
           },
         })
       )

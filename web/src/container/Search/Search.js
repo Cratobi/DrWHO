@@ -46,7 +46,7 @@ class Search extends Component {
   }
   onNewAppointment = license_number => {
     this.props.createAppointment({
-      ssn            : this.props.ssn,
+      ssn            : 9,
       license_number,
     })
     this.props.history.push('/patient/appointments')
@@ -81,60 +81,62 @@ class Search extends Component {
 
           {/* Search Result */}
           <div className='container-fluid row flex-wrap justify-content-center grid-card-last m-0'>
-            {doctor_list.map(({ license_number, name, graduated_college, location, rating, visiting_fee }) => (
-              <div key={license_number} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
-                <div className='card-body row'>
-                  <div className='col'>
-                    {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
+            {doctor_list.map(
+              ({ license_number, name, specialised, graduated_college, location, rating, visiting_fee }) => (
+                <div key={license_number} className='card shadow-sm flex-fill m-1' style={{ width: '100%' }}>
+                  <div className='card-body row'>
+                    <div className='col'>
+                      {/* <figure className='figure' style={{ minWidth: '10rem', width: '10rem' }}>
                     <img src={avatar} className='figure-img img-fluid rounded' alt={name} />
                   </figure> */}
-                    <h4 className='card-title mb-4'>
-                      {name}
-                      <br />
-                      <small className='text-muted'>{specialised}</small>
-                    </h4>
-                    <div className='mb-2'>
-                      <h6 className='mb-0 text-muted'>Location</h6>
-                      <small>{location}</small>
+                      <h4 className='card-title mb-4'>
+                        {name}
+                        <br />
+                        <small className='text-muted'>{specialised}</small>
+                      </h4>
+                      <div className='mb-2'>
+                        <h6 className='mb-0 text-muted'>Location</h6>
+                        <small>{location}</small>
+                      </div>
+                      <div>
+                        <h6 className='mb-0 text-muted'>Qualification</h6>
+                        <small>{graduated_college}</small>
+                      </div>
                     </div>
-                    <div>
-                      <h6 className='mb-0 text-muted'>Qualification</h6>
-                      <small>{graduated_college}</small>
-                    </div>
-                  </div>
-                  <div className='col d-flex flex-column align-items-end'>
-                    <div className='text-end'>
-                      <small className='mb-0 text-muted'>Review</small>
-                      <h5>{rating}</h5>
-                    </div>
-                    <div className='text-end'>
-                      <small className='mb-0 text-muted'>Visiting</small>
-                      <h5>{visiting_fee} Taka</h5>
-                    </div>
-                    <div className='mt-auto'>
-                      <button
-                        className='btn btn-secondary ms-1'
-                        onClick={() =>
-                          onChange('review_modal', true, () =>
-                            onChange('license_number', license_number, () => fetchReview({ license_number }))
-                          )}
-                      >
-                        See Review
-                      </button>
-                      <button
-                        className='btn btn-primary ms-1'
-                        onClick={e =>
-                          onChange('appointment_modal', true, () =>
-                            onChange('license_number', license_number, () => fetchReview({ license_number }))
-                          )}
-                      >
-                        Ask for Appointment
-                      </button>
+                    <div className='col d-flex flex-column align-items-end'>
+                      <div className='text-end'>
+                        <small className='mb-0 text-muted'>Review</small>
+                        <h5>{rating}</h5>
+                      </div>
+                      <div className='text-end'>
+                        <small className='mb-0 text-muted'>Visiting</small>
+                        <h5>{visiting_fee} Taka</h5>
+                      </div>
+                      <div className='mt-auto'>
+                        <button
+                          className='btn btn-secondary ms-1'
+                          onClick={() =>
+                            onChange('review_modal', true, () =>
+                              onChange('license_number', license_number, () => fetchReview({ license_number }))
+                            )}
+                        >
+                          See Review
+                        </button>
+                        <button
+                          className='btn btn-primary ms-1'
+                          onClick={e =>
+                            onChange('appointment_modal', true, () =>
+                              onChange('license_number', license_number, () => fetchReview({ license_number }))
+                            )}
+                        >
+                          Ask for Appointment
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </section>
 
