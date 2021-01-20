@@ -9,7 +9,7 @@ class Login extends Component {
   }
   state = {
     email          : '',
-    password       : '',
+    password       : 'g',
     keep_logged_in : false,
   }
 
