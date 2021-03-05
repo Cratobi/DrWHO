@@ -9,7 +9,7 @@ class Login extends Component {
   }
   state = {
     email          : '',
-    password       : 'g',
+    password       : '',
     keep_logged_in : false,
   }
 
@@ -39,11 +39,11 @@ class Login extends Component {
         {/* Main */}
         <section className='col d-flex flex-basis-auto justify-content-center align-items-center'>
           {/* Login */}
-          <div className='card my-5 shadow-sm' style={{ width: '30rem' }}>
-            <div className='card-body p-4'>
+          <div className='my-5 shadow-sm card' style={{ width: '30rem' }}>
+            <div className='p-4 card-body'>
               <div className='mb-4'>
-                <p className='display-4 text-center px-2'>Login</p>
-                <div className='text-center px-2'>
+                <p className='px-2 text-center display-4'>Login</p>
+                <div className='px-2 text-center'>
                   Don't have an account? Click to {' '}
                   <b>
                     <Link to='/registration'>Signup</Link>
@@ -104,10 +104,10 @@ class Login extends Component {
                     </strong>
                   </div>
                   <div>
-                    <Link to='/registration' className='btn btn-secondary mx-1'>
+                    <Link to='/registration' className='mx-1 btn btn-secondary'>
                       Or, Register
                     </Link>
-                    <button type='submit' className='btn btn-primary mx-1' onClick={e => onSubmit(e)}>
+                    <button type='submit' className='mx-1 btn btn-primary' onClick={e => onSubmit(e)}>
                       Login
                     </button>
                   </div>
